@@ -4,17 +4,43 @@ function getComputerChoice(){
     return answers[index]
 }
 
-function getPlayerChoice() {
-    let choise = prompt("Please enter your choise", "Rock, Paper, Scissor");
+function rockChoice() {
+    let choise = "Rock";
     if (choise != null ) {
         var playerSelection = choise.toLowerCase();
         const computerSelection = getComputerChoice();
         let result = playRound(playerSelection, computerSelection)
-        document.getElementById("result").innerHTML = result 
-        return result
+        document.getElementById("result").innerHTML = result
+        game(result) 
+        return 
 
     }  
-    
+}
+
+function paperChoice() {
+    let choise = "Paper";
+    if (choise != null ) {
+        var playerSelection = choise.toLowerCase();
+        const computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection)
+        document.getElementById("result").innerHTML = result
+        game(result) 
+        return 
+
+    }  
+}
+
+function scissorChoice() {
+    let choise = "Scissor";
+    if (choise != null ) {
+        var playerSelection = choise.toLowerCase();
+        const computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection)
+        document.getElementById("result").innerHTML = result
+        game(result) 
+        return 
+
+    }  
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -47,35 +73,37 @@ function playRound(playerSelection, computerSelection) {
 
 let computer = 0;
 let player = 0;
-let i = 0;
 let winner = null;
 
-function game() {
+function game(result) {
 
-    let result = getPlayerChoice()
     if (result == "You Lose! Paper beats Rock" || result == "You Lose! Scissor beats Paper" || result == "You Lose! Rock beats Scissor"  ) {
         computer++
-        i++
         document.getElementById("score").innerHTML = "Computer:"+computer+" x "+"Player:"+player
         
     }
     else {
         player++
-        i++
         document.getElementById("score").innerHTML = "Computer:"+computer+" x "+"Player:"+player
 
     }
 
-    if (i==5) {
+    if (computer==5) {
         document.getElementById("score").innerHTML = "Computer:"+computer+" x "+"Player:"+player
-            if (computer > player) {
-                winner = "I won as allways!!"
-            }
-            else {
-                winner = "You fuck!!"
-            }
-        setTimeout(() => alert(winner));
+        winner = "Computer won!!"    
+        document.getElementById("winner").innerHTML = winner
+        setTimeout(() => alert("Let's play again?"));
         window.location.reload()
         return
     }
+    else if (player==5) {
+        document.getElementById("score").innerHTML = "Computer:"+computer+" x "+"Player:"+player
+        winner = "Player won!!"    
+        document.getElementById("winner").innerHTML = winner
+        setTimeout(() => alert("Let's play again?"));
+        window.location.reload()
+        return
+    }
+
 }
+
